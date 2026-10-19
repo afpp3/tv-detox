@@ -624,6 +624,8 @@ public class MainActivity extends Activity {
             case "bluetooth":
                 all.add(new Intent(Settings.ACTION_BLUETOOTH_SETTINGS));
                 all.add(new Intent("com.google.android.intent.action.CONNECT_INPUT")); // Android TV's pairing screen
+                // If the TV refuses those (Philips wants BLUETOOTH_CONNECT), Settings still has Bluetooth.
+                all.add(new Intent(Settings.ACTION_SETTINGS));
                 break;
             case "sound": all.add(new Intent(Settings.ACTION_SOUND_SETTINGS)); break;
             case "picture": all.add(new Intent(Settings.ACTION_DISPLAY_SETTINGS)); break;

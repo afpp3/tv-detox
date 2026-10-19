@@ -66,6 +66,9 @@ if [ "$(sh_tv getprop ro.build.version.sdk)" -ge 29 ]; then
   sh_tv cmd role add-role-holder --user 0 android.app.role.HOME com.ansub.tvhome >/dev/null 2>&1 || true
 fi
 sh_tv cmd package set-home-activity "$ME" >/dev/null 2>&1 || true
+# Some TVs (like Philips) only open their Bluetooth pairing screen for apps that hold this.
+# Android 11 and older don't have it, so a failure is fine.
+sh_tv pm grant com.ansub.tvhome android.permission.BLUETOOTH_CONNECT >/dev/null 2>&1 || true
 
 # Known TV home screens that are safe to turn off.
 LAUNCHERS="com.google.android.tvlauncher com.google.android.apps.tv.launcherx com.google.android.leanbacklauncher
